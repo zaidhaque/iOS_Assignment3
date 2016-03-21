@@ -13,8 +13,8 @@ class ViewController: UIViewController, UITextFieldDelegate{
 
     
     @IBOutlet weak var nameTextField: UITextField!
-    
     @IBOutlet weak var ageTextField: UITextField!
+    @IBOutlet weak var saveButton: UIButton!
     
     var goat = Goat()
     
@@ -26,6 +26,9 @@ class ViewController: UIViewController, UITextFieldDelegate{
 
         nameTextField.text = goat.name
         ageTextField.text = "\(goat.age)"
+        
+        saveButton.enabled = false
+        
     }
     
     override func didReceiveMemoryWarning() {
@@ -66,6 +69,11 @@ class ViewController: UIViewController, UITextFieldDelegate{
     }
     
     func textFieldDidEndEditing(textField: UITextField) {
+        if (!nameTextField.text!.isEmpty && Int(ageTextField.text!) != nil) {
+            saveButton.enabled = true
+        } else {
+            saveButton.enabled = false
+        }
     }
 }
 
